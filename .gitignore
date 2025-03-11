@@ -1,0 +1,23 @@
+# Environment files
+venv/
+.env 
+
+# Byte-compiled and cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Test results and logs
+*.log
+*.sqlite3
+pytest.ini
+
+# System files
+.DS_Store
+Thumbs.db
+
+# my files
+config.py
+
+# my folders
+.vscode/
