@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users',
+    'jobs',
 ]
 
 MIDDLEWARE = [
@@ -87,6 +89,13 @@ DATABASES = {
     'default': env.db(),
 }
 
+# Add auth user model
+AUTH_USER_MODEL = 'users.CustomUser'
+
+# Configure login URLs
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'dashboard'
+LOGOUT_REDIRECT_URL = 'home'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
