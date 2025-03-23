@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron bg-light p-5 rounded">
+    <h1 class="display-4">Welcome to JobHub!</h1>
+    <p class="lead">Connect with employers and find your dream job.</p>
+    <hr class="my-4">
+    <p>Sign up as a job seeker to browse jobs or as an employer to post job openings.</p>
+    <div class="mt-4">
+        <a href="{% url 'job_seeker_signup' %}" class="btn btn-primary me-2">Sign Up as Job Seeker</a>
+        <a href="{% url 'employer_signup' %}" class="btn btn-outline-primary">Sign Up as Employer</a>
+    </div>
+</div>
+{% endblock %}

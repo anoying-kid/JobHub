@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Job Seeker Dashboard - JobHub{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Profile</h5>
+            </div>
+            <div class="card-body">
+                <h5>{{ user.username }}</h5>
+                <p class="text-muted">{{ user.email }}</p>
+                
+                {% if profile.resume %}
+                    <p><strong>Resume:</strong> <a href="{{ profile.resume.url }}" target="_blank">View Resume</a></p>
+                {% else %}
+                    <p class="text-muted">No resume uploaded yet.</p>
+                {% endif %}
+                
+                <div class="mb-3">
+                    <h6>Skills</h6>
+                    {% if profile.skills.all %}
+                        {% for skill in profile.skills.all %}
+                            <span class="badge bg-primary me-1">{{ skill.name }}</span>
+                        {% endfor %}
+                    {% else %}
+                        <p class="text-muted">No skills added yet.</p>
+                    {% endif %}
+                </div>
+                
+                <a href="#" class="btn btn-primary btn-sm">Edit Profile</a>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Upload Resume</h5>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="resume" class="form-label">Select PDF Resume</label>
+                        <input type="file" class="form-control" id="resume" name="resume">
+                        <small class="form-text text-muted">We'll extract your skills automatically.</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Recommended Jobs</h5>
+            </div>
+            <div class="card-body">
+                <div class="list-group">
+                    <!-- This will be populated with recommended jobs -->
+                    <p class="text-muted">Job recommendations will appear here once your skills are added.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="mb-0">My Applications</h5>
+            </div>
+            <div class="card-body">
+                <div class="list-group">
+                    <!-- This will be populated with job applications -->
+                    <p class="text-muted">Your job applications will appear here.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
